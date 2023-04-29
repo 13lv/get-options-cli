@@ -6,11 +6,11 @@ import sys
 def help(hid=''):
     help_map = {
         'help_1': ("\n --- <Description 1> ---"
-f"\n Usage: {sys.argv[0]} [-a <> ()] [-b <> ()] [-c <> ()]"
+f"\n Usage: {sys.argv[0]} [-a <> ()] [-b <> ()] [-c <> ()]\n"
         ),
 
         'help_2': ("\n --- <Description 2> ---"
-f"\n Usage: {sys.argv[0]} [-d <> ()] [-e <> ()] [-f <> ()]"
+f"\n Usage: {sys.argv[0]} [-d <> ()] [-e <> ()] [-f <> ()]\n"
         ),
     }
 
