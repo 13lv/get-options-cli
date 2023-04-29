@@ -1,5 +1,5 @@
 #
-# Filename: "config.py"
+# Filename: "common_vars.py"
 #
 OPTIONS = {}
 

@@ -1,5 +1,5 @@
 #
-# Filename: "common_simple.py"
+# Filename: "common_simple_fn.py"
 #
 # --- local modules ---
 #import settings as _stng
