@@ -40,12 +40,12 @@ def _get_options():
 
     allow_opts = {
 #       <program use option>: <short options> <long options>
-        '1': ('a:b:c:', ['--along=', '--blong=blong_var_dflt', '--clong=']),
-        '2': ('d:e:f:', ['--dlong=', '--elong=', '--flong=']),
+        '1': ('a:b:c:', ['along=', 'blong=', 'clong=']),
+        '2': ('d:e:f:', ['dlong=', 'elong=', 'flong=']),
     }
 
     allow_args = (
-
+        'ppp',
     )
 
     def read_opt_arg(param, param_long):
@@ -78,7 +78,7 @@ def _get_options():
             sys.exit(1)
 
     def chk_arg(opt='', val=''):
-        ptrn_arg = re.compile(allow_opts_values.get(opt, ())[1])
+        ptrn_arg = re.compile(allow_opts_values.get(opt, ('', ''))[1])
         if ptrn_arg.match(val) is None:
             _log.error(f"Option: \"{opt}\" has No Acceptable value \"{val}\"!")
             help.help()
@@ -89,6 +89,7 @@ def _get_options():
                   f" Options: \"{opts}\"")
 
         chk_arg(o, ov)
+
         _cfg.OPTIONS[allow_opts_values.get(o)[0]] = ov
 
     return _cfg.OPTIONS
