@@ -5,7 +5,7 @@ import os
 import sys
 import datetime as _dt
 # --- local modules ---
-import common_simple as _cmns
+import common_simple_fn as _csf
 
 
 class Logger():
@@ -17,7 +17,7 @@ class Logger():
         dnl -> disable new line
         """
         def rm_nl(msg):
-            if _cmns.is_true(dnl):
+            if _csf.is_true(dnl):
                 return ' '.join(msg.split())
             return msg
 

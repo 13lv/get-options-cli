@@ -5,9 +5,9 @@
 
 # --- local modules ---
 import get_options_cli as _goc
-import config as _cfg
+import common_vars as _cv
 
 if __name__ == "__main__":
     _goc.get_options()
-    print(_cfg.OPTIONS)
+    print(_cv.OPTIONS)
 

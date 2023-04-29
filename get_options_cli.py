@@ -7,7 +7,7 @@ import getopt
 import re
 # --- local modules ---
 import help
-import config as _cfg
+import common_vars as _cv
 import logger as _lggr
 
 fname = os.path.basename(__file__).split(".")[0] # название текущего файла.
@@ -90,7 +90,7 @@ def _get_options():
 
         chk_arg(o, ov)
 
-        _cfg.OPTIONS[allow_opts_values.get(o)[0]] = ov
+        _cv.OPTIONS[allow_opts_values.get(o)[0]] = ov
 
     return _cfg.OPTIONS
 
