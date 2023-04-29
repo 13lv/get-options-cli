@@ -7,7 +7,6 @@
 *.txt
 *.db
 *settings.py
-*config.py
 *test.py
 *.swp
 *.old

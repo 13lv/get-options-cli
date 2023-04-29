@@ -7,6 +7,7 @@ import getopt
 import re
 # --- local modules ---
 import help
+import config as _cfg
 import logger as _lggr
 
 fname = os.path.basename(__file__).split(".")[0] # название текущего файла.
@@ -32,44 +33,42 @@ def get_options():
     }
 
     allow_opt = {
-            #       <program use option>: <>
-        '1': 'a:b:c:',
-        '1L': ['--along=', '--blong=', '--clong='],
-        '2': 'd:e:f:',
-        '2L': ['--dlong=', '--elong=', '--flong='],
-
-        '': '',
+#       <program use option>: <short options> <long options>
+        '1': ('a:b:c:', ['--along=', '--blong=', '--clong=']),
+        '2': ('d:e:f:', ['--dlong=', '--elong=', '--flong=']),
     }
 
 
     def read_opt(param, param_long):
         try:
             opts, args = getopt.getopt(sys.argv[1:], param, param_long)
-        except getopt.GetoptError:
+        except getopt.GetoptError as e:
+            _log.exception(f"got EXCEPTION: \"{e}\"")
             help.help()
             sys.exit(1)
         else:
             return opts, args
 
+    for _, v in allow_opt.items():
+        opts, args = read_opt(v[0], v[1])
 
-    opts, args = read_opt(allow_opt['1'], allow_opt['1L'])
-
-    if not opts:
-        _log.error(f"Options not Found!")
-        help.help()
-        sys.exit(1)
+        if not opts and not args:
+            _log.error("Options and Arguments Not Found!")
+            help.help()
+            sys.exit(1)
+        else:
+            break
 
     if args:
         _log.error(f"Arguments Found.")
         help.help()
         sys.exit(1)
 
-    options = {}
-
     for o, ov in opts:
-        _log.info()
+        _log.info(f"Option: \"{o}\", Option Value: \"{ov}\","
+                  f" Options: \"{opts}\", Arguments: \"{args}\"")
 
-        options[allow_opt.get(o, help.help())] = ov
+        _cfg.OPTIONS[allow_opt_values.get(o, help.help())[0]] = ov
 
-    return options
+    return _cfg.OPTIONS
 
