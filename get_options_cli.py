@@ -97,6 +97,7 @@ def _get_options():
 
 # Test
 def get_options():
-    _get_options()
-#    opts, args = getopt.getopt(sys.argv[1:], 'a:bc:', ['--along=', '--blong', '--clong'])
+#    _get_options()
+    opts, args = getopt.getopt(sys.argv[1:], 'a:bc:', ['along=', 'blong=', 'clong='])
+    print(f"Options: \"{opts}\", Arguments: \"{args}\"")
 
