@@ -6,7 +6,7 @@ import sys
 import getopt
 import re
 # --- local modules ---
-import help
+import get_options_cli_getopt.help
 import common_vars as _cv
 import logger as _lggr
 
