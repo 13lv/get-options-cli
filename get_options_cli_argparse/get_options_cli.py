@@ -101,9 +101,7 @@ class MyCustomArgParse(argparse.ArgumentParser):
     def exit(self, status=0, message=None):
         if message:
             color = self.color_dict.get('dred')
-            if color is None:
-                message
-            else:
+            if not color is None:
                 message = (
                     '\x1b[%sm%s\x1b[0m'%(color, message)
                 )
