@@ -57,47 +57,57 @@ class MyCustomArgParse(argparse.ArgumentParser):
     }
 
     def print_usage(self, file=None):
+        if file is None:
+            file = sys.stdout
+
         line_usage = self.format_usage()
 
         color = self.color_dict.get('yellow')
         if not color is None:
-            line_usage = '\n \x1b[%sm%s\x1b\n'%(color, 
+            line_usage = '\n \x1b[%sm%s\x1b[0m\n'%(color, 
                 f"{line_usage[0].upper()}{line_usage[1:]}")
+
+            if not file == sys.stdout or not file == sys.stderr:
+                file = sys.stdout
         else:
             line_usage = '\n %s%s\n'%(line_usage[0].upper(), line_usage[1:])
-
-        if file is None or not color is None:
-            file = sys.stdout
 
         self._print_message(line_usage, file)
 
     def print_help(self, file=None):
-        line_help = self.format_help()
+        if file is None:
+            file = sys.stdout
 
-        color = self.color_dict.get('dgray')
-        if color is None:
-            line_help = (
-                '\n ● %s%s'%(line_help[0].upper(), line_help_[1:])
-            )
-        else:
-            help = line_help.split('\n')
+        help = self.format_help().split('\n')
+
+        color = self.color_dict.get('dgray-')
+        if not color is None:
             part_usage = (
                 '\n\x1b[1;93m ● %s%s\x1b[0m'%(help[0][0].upper(), help[0][1:])
             )
             line_help = "%s\n\x1b[%sm%s\x1b[0m"%(part_usage, color, 
                                                     '\n '.join(help[1:]))
 
-        if file is None or not color is None:
-            file = sys.stdout
+            if not file == sys.stdout or not file == sys.stderr:
+                file = sys.stdout
+        else:
+            part_usage = (
+                '\n ● %s%s'%(help[0][0].upper(), help[0][1:])
+            )
+            line_help = "%s\n%s"%(part_usage, '\n '.join(help[1:]))
 
         self._print_message(line_help, file)
 
     def exit(self, status=0, message=None):
         if message:
-            custom_msg = (
-                '\x1b[%sm%s\x1b[0m'%(self.color_dict.get('dred'), message)
-            )
-            self._print_message(custom_msg, sys.stderr)
+            color = self.color_dict.get('dred-')
+            if color is None:
+                message
+            else:
+                message = (
+                    '\x1b[%sm%s\x1b[0m'%(color, message)
+                )
+            self._print_message(message, sys.stderr)
         sys.exit(status)
 
     def error(self, message):
