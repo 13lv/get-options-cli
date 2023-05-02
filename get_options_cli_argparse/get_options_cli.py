@@ -82,19 +82,19 @@ class MyCustomArgParse(argparse.ArgumentParser):
 
         color = self.color_dict.get('dgray')
         if not color is None:
-            part_usage = (
+            usage_part = (
                 '\n\x1b[1;93m ● %s%s\x1b[0m'%(help[0][0].upper(), help[0][1:])
             )
-            line_help = "%s\n\x1b[%sm%s\x1b[0m"%(part_usage, color, 
+            line_help = "%s\n\x1b[%sm%s\x1b[0m"%(usage_part, color, 
                                                     '\n '.join(help[1:]))
 
             if not file is sys.stdout or not file is sys.stderr:
                 file = sys.stdout
         else:
-            part_usage = (
+            usage_part = (
                 '\n ● %s%s'%(help[0][0].upper(), help[0][1:])
             )
-            line_help = "%s\n%s"%(part_usage, '\n '.join(help[1:]))
+            line_help = "%s\n%s"%(usage_part, '\n '.join(help[1:]))
 
         self._print_message(line_help, file)
 
