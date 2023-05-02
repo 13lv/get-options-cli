@@ -80,7 +80,7 @@ class MyCustomArgParse(argparse.ArgumentParser):
 
         help = self.format_help().split('\n')
 
-        color = self.color_dict.get('dgray-')
+        color = self.color_dict.get('dgray')
         if not color is None:
             usage_part = (
                 '\n\x1b[1;93m ● %s%s\x1b[0m'%(help[0][0].upper(), help[0][1:])
