@@ -9,6 +9,6 @@ import get_options_cli_argparse.get_options_cli as _goc
 import common_vars as _cv
 
 if __name__ == "__main__":
-    _goc.get_options()
+#    _goc.get_options()
     print(_cv.OPTIONS)
 
