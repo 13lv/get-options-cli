@@ -67,7 +67,7 @@ class MyCustomArgParse(argparse.ArgumentParser):
             line_usage = '\n \x1b[%sm%s\x1b[0m\n'%(color, 
                 f"{line_usage[0].upper()}{line_usage[1:]}")
 
-            if not file == sys.stdout or not file == sys.stderr:
+            if not file is sys.stdout or not file is sys.stderr:
                 file = sys.stdout
         else:
             line_usage = '\n %s%s\n'%(line_usage[0].upper(), line_usage[1:])
@@ -88,7 +88,7 @@ class MyCustomArgParse(argparse.ArgumentParser):
             line_help = "%s\n\x1b[%sm%s\x1b[0m"%(part_usage, color, 
                                                     '\n '.join(help[1:]))
 
-            if not file == sys.stdout or not file == sys.stderr:
+            if not file is sys.stdout or not file is sys.stderr:
                 file = sys.stdout
         else:
             part_usage = (
