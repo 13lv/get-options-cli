@@ -124,14 +124,14 @@ parser = MyCustomArgParse(
 parser.add_argument('arg_1', 
     type=str, 
     default='arg_arg_1', 
-    help='Test help arg_1'
+    help='Test help for argument: arg_1'
 )
 
 parser.add_argument('-a', '--along', dest='a_var', 
     nargs=2, 
     metavar=('A', 'B'), 
     required=True, type=str, default="<opt_a_dflt>", 
-    help='Test help a \"%(metavar)s\"'
+    help='Test help for option: -a, --along \"%(metavar)s\"'
 )
 
 parser.add_argument('-b', '--blong', dest='b_var', 
@@ -139,14 +139,22 @@ parser.add_argument('-b', '--blong', dest='b_var',
     type=str, 
     choices=['b1', 'b2'], 
     default="<opt_b_dflt>", 
-    help='Test help b'
+    help='Test help for option: -b, --blong'
 )
 
 parser.add_argument('-c', '--clong', dest='c_var', 
     metavar='', 
     type=str, required=True, 
     default="<opt_c_dflt>", 
-    help='Test help c'
+    help='Test help for option: -c, --clong'
+)
+
+required = parser.add_argument_group('required arguments')
+required.add_argument('-i', '--id', dest='id_var',
+    metavar='', 
+    type=str, required=True, 
+    default="", 
+    help='Test help for option: -i, --id'
 )
 
 args = parser.parse_args()
